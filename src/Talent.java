@@ -1,2 +1,3 @@
-public class Talent implements Table {
+class Talent extends Table {
+    void main(String[] args) {}
 }

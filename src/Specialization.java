@@ -1,2 +1,3 @@
-public class Specialization implements Table {
+public class Specialization extends Table {
+    void main(String[] args) {}
 }

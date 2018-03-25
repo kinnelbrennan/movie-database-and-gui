@@ -1,2 +1,3 @@
-public class Award implements Table {
+public class Award extends Table {
+    void main(String[] args) {}
 }

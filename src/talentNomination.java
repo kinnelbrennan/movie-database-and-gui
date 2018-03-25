@@ -1,2 +1,3 @@
-public class talentNomination implements Table {
+public class talentNomination extends Table {
+    void main(String[] args) {}
 }

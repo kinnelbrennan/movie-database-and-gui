@@ -1,2 +1,3 @@
-public class filmCategory implements Table {
+public class filmCategory extends Table {
+    void main(String[] args) {}
 }

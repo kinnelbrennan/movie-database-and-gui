@@ -1,2 +1,3 @@
-public class Genre implements Table {
+public class Genre extends Table {
+    void main(String[] args) {}
 }

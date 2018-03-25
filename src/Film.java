@@ -1,2 +1,2 @@
-public class Film implements Table {
+public class Film extends Table {
 }
