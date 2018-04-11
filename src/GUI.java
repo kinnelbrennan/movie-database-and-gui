@@ -11,14 +11,17 @@ import java.sql.SQLException;
 
 public class GUI extends JFrame {
     // height in pixels
-    private static final int HEIGHT = 900;
+    private static final int HEIGHT = 1800;
 
     //width in pixels
-    private static final int WIDTH = 1440;
+    private static final int WIDTH = 2880;
 
     // gives us a cell format for the result set
     private JTable view;
     private MovieTableModel mModel;
+    private ActorTableModel aModel;
+    private AwardTableModel awModel;
+    private RoleTableModel rModel;
 
     // so we can scroll through the results
     private JScrollPane scrollPane;
@@ -73,6 +76,9 @@ public class GUI extends JFrame {
         buttonLayoutConstraints.gridwidth = GridBagConstraints.REMAINDER;
 
         buttonLayout.setConstraints(addMovieData, buttonLayoutConstraints);
+        buttonLayout.setConstraints(addActorData, buttonLayoutConstraints);
+        buttonLayout.setConstraints(addAwardData, buttonLayoutConstraints);
+        buttonLayout.setConstraints(addRoleData, buttonLayoutConstraints);
         buttonLayout.setConstraints(removeData, buttonLayoutConstraints);
 
         left.setLayout(buttonLayout);
@@ -96,6 +102,9 @@ public class GUI extends JFrame {
         });
 
         addMovieData.addActionListener(new AddMovieListener(this));
+        addActorData.addActionListener(new AddActorListener(this));
+        addAwardData.addActionListener(new AddAwardListener(this));
+        addRoleData.addActionListener(new AddRoleListener(this));
 
         removeData.addActionListener(new ActionListener() {
             @Override
@@ -109,6 +118,24 @@ public class GUI extends JFrame {
                         view.repaint();
                         view.clearSelection();
                     }
+                    else if(selected != -1 && selected < aModel.getRowCount()){
+                        rs.absolute(view.getSelectedRow() + 1);
+                        rs.deleteRow();
+                        view.repaint();
+                        view.clearSelection();
+                    }
+                    else if(selected != -1 && selected < awModel.getRowCount()){
+                        rs.absolute(view.getSelectedRow() + 1);
+                        rs.deleteRow();
+                        view.repaint();
+                        view.clearSelection();
+                    }
+                    else if(selected != -1 && selected < rModel.getRowCount()){
+                        rs.absolute(view.getSelectedRow() + 1);
+                        rs.deleteRow();
+                        view.repaint();
+                        view.clearSelection();
+                    }
                     } catch(SQLException r) {
                     System.out.println("SQL Exception thrown:");
                     r.printStackTrace();
@@ -117,6 +144,9 @@ public class GUI extends JFrame {
         });
 
         queryMovies.addActionListener(new GetListenerMovie());
+        queryActors.addActionListener(new GetListenerActor());
+        queryAwards.addActionListener(new GetListenerAwards());
+        queryRoles.addActionListener(new GetListenerRoles());
         /* When we first launch the UI we do not want it to look goofy so
            query on open
          */

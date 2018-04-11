@@ -60,6 +60,7 @@ public class databaseConnection {
     //to query data
     public void queryData(String query) {
         try {
+            sttmnt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = sttmnt.executeQuery(query);
         } catch (SQLException e) {
             System.out.println("SQL exception thrown:");
@@ -70,6 +71,7 @@ public class databaseConnection {
     //to insert or remove data
     public void updateData(String query) {
         try {
+            sttmnt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             sttmnt.executeUpdate(query);
         } catch (SQLException e) {
             System.out.println("SQL exception thrown:");

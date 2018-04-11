@@ -30,23 +30,23 @@ public class AddMovieDialogue extends JDialog {
 
     public AddMovieDialogue(final JFrame lorde) {
         super(lorde, "Add Movie", true);
-        setSize(1440, 150);
+        setSize(300, 300);
 
         //create the panel
         JPanel middle = new JPanel();
-        middle.setLayout(new GridLayout(1, 6));
+        middle.setLayout(new GridLayout(6, 1));
         middle.add(new JLabel(" idFilm"));
         middle.add(idfilmField);
         middle.add(new JLabel(" Title"));
         middle.add(titleField);
         middle.add(new JLabel(" Release Date"));
         middle.add(releaseField);
-        middle.add(new JLabel(" Length"));
-        middle.add(lengthField);
         middle.add(new JLabel(" IMDB Rating"));
         middle.add(ratingField);
         middle.add(new JLabel(" Plot"));
         middle.add(plotField);
+        middle.add(new JLabel(" Length"));
+        middle.add(lengthField);
 
         //create the top panel where you can confirm/cancel
         JPanel top = new JPanel();
@@ -99,9 +99,9 @@ public class AddMovieDialogue extends JDialog {
         query = "insert into Film values ('" + idFilm + "','"
                 + title + "','"
                 + release + "','"
-                + length + "','"
                 + rating + "','"
-                + plot + "') ";
+                + plot + "','"
+                + length + "') ";
         return query;
     }
 
