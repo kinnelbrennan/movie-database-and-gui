@@ -154,14 +154,65 @@ public class GUI extends JFrame {
         }
     }
     // get listener class for actors(inner for simplicity sake)
-        public String simpleQueryActor() {
-            return "select idfilm, Title, Release_Date, Length, imdbRating, Plot from Film";
+    class GetListenerActor implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (scrollPane != null)
+                getContentPane().remove(scrollPane);
+            dbc.queryData(simpleQueryActor());
+            ResultSet rs = dbc.getRs();
+            aModel = new ActorTableModel(rs);
+            view = new JTable(aModel);
+            view.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+            //Add all these results to the container and then display it
+            scrollPane = new JScrollPane(view);
+            getContentPane().add(scrollPane, BorderLayout.CENTER);
+            pack();
+            doLayout();
         }
-        public String simpleQueryRole() {
-            return "select idfilm, Title, Release_Date, Length, imdbRating, Plot from Film";
+        public String simpleQueryActor() {
+            return "select idActors, Name, Birthday, Birthplace from Actors";
+        }
+    }
+    class GetListenerAwards implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (scrollPane != null)
+                getContentPane().remove(scrollPane);
+            dbc.queryData(simpleQueryAwards());
+            ResultSet rs = dbc.getRs();
+            awModel = new AwardTableModel(rs);
+            view = new JTable(awModel);
+            view.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+            //Add all these results to the container and then display it
+            scrollPane = new JScrollPane(view);
+            getContentPane().add(scrollPane, BorderLayout.CENTER);
+            pack();
+            doLayout();
         }
         public String simpleQueryAwards() {
-            return "select idfilm, Title, Release_Date, Length, imdbRating, Plot from Film";
+            return "select idAwards, Name, Category from Awards";
         }
+    }
+    class GetListenerRoles implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (scrollPane != null)
+                getContentPane().remove(scrollPane);
+            dbc.queryData(simpleQueryRoles());
+            ResultSet rs = dbc.getRs();
+            rModel = new RoleTableModel(rs);
+            view = new JTable(rModel);
+            view.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+            //Add all these results to the container and then display it
+            scrollPane = new JScrollPane(view);
+            getContentPane().add(scrollPane, BorderLayout.CENTER);
+            pack();
+            doLayout();
+        }
+        public String simpleQueryRoles() {
+            return "select idWorks_on, Role, star, idActors, idFilm from Works_on";
+        }
+    }
 
 }
