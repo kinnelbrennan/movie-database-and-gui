@@ -15,7 +15,7 @@ public class databaseConnection {
     private final int portNumber =  3306;
 
     //database name
-    private final String dbName = "movedb";
+    private final String dbName = "movieDB";
 
     //default statement
     private Statement sttmnt;

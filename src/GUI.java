@@ -24,11 +24,11 @@ public class GUI extends JFrame {
     private JScrollPane scrollPane;
 
     // to enter varios types of data
-    private  JTextField titleField = new JTextField(10);
-    private  JTextField releaseField = new JTextField(10);
-    private  JTextField lengthField = new JTextField(10);
-    private  JTextField ratingField = new JTextField(10);
-    private  JTextField plotField = new JTextField(10);
+    //private  JTextField titleField = new JTextField(10);
+    //private  JTextField releaseField = new JTextField(10);
+    //private  JTextField lengthField = new JTextField(10);
+    //private  JTextField ratingField = new JTextField(10);
+    //private  JTextField plotField = new JTextField(10);
 
     // the DB
     private databaseConnection dbc;
@@ -38,9 +38,15 @@ public class GUI extends JFrame {
         dbc = new databaseConnection();
 
         // buttons to provide functionality
-        JButton query = new JButton("Query"); //queries for data
-        JButton addData = new JButton("+"); //add a movie
-        JButton removeData = new JButton("-"); //remove a movie
+        JButton queryMovies = new JButton("Query Movies"); //queries for data
+        JButton queryActors = new JButton("Query Actors"); //queries for data
+        JButton queryRoles = new JButton("Query Roles"); //queries for data
+        JButton queryAwards = new JButton("Query Awards"); //queries for data
+        JButton addMovieData = new JButton("Add Movie"); //add a movie
+        JButton addActorData = new JButton("Add Actor"); //add an Actor
+        JButton addRoleData = new JButton("Add Role"); //add a Role
+        JButton addAwardData = new JButton("Add Award"); //add an Award
+        JButton removeData = new JButton("Remove Row"); //remove a movie
 
         //Setting up the window
         setTitle("Movie Database");
@@ -50,17 +56,10 @@ public class GUI extends JFrame {
         JPanel bottom = new JPanel();
         bottom.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        bottom.add(new JLabel("Title: "));
-        bottom.add(titleField);
-        bottom.add(new JLabel(" Release Date:"));
-        bottom.add(releaseField);
-        bottom.add(new JLabel(" Runtime:"));
-        bottom.add(lengthField);
-        bottom.add(new JLabel(" IMDB Rating:"));
-        bottom.add(ratingField);
-        bottom.add(new JLabel(" Plot:"));
-        bottom.add(plotField);
-        bottom.add(query);
+        bottom.add(queryMovies);
+        bottom.add(queryActors);
+        bottom.add(queryAwards);
+        bottom.add(queryRoles);
 
         //Creating the panel for manipulating data
         JPanel left = new JPanel();
@@ -73,11 +72,14 @@ public class GUI extends JFrame {
         buttonLayoutConstraints.fill = GridBagConstraints.BOTH;
         buttonLayoutConstraints.gridwidth = GridBagConstraints.REMAINDER;
 
-        buttonLayout.setConstraints(addData, buttonLayoutConstraints);
+        buttonLayout.setConstraints(addMovieData, buttonLayoutConstraints);
         buttonLayout.setConstraints(removeData, buttonLayoutConstraints);
 
         left.setLayout(buttonLayout);
-        left.add(addData);
+        left.add(addMovieData);
+        left.add(addActorData);
+        left.add(addAwardData);
+        left.add(addRoleData);
         left.add(removeData);
 
         // add the panels to our container
@@ -93,7 +95,7 @@ public class GUI extends JFrame {
             }
         });
 
-        addData.addActionListener(new AddMovieListener(this));
+        addMovieData.addActionListener(new AddMovieListener(this));
 
         removeData.addActionListener(new ActionListener() {
             @Override
@@ -114,12 +116,11 @@ public class GUI extends JFrame {
             }
         });
 
-        query.addActionListener(new GetListener());
+        queryMovies.addActionListener(new GetListenerMovie());
         /* When we first launch the UI we do not want it to look goofy so
            query on open
          */
-        query.doClick();
-        titleField.requestFocus(); //So the title is the mose obvious
+        queryMovies.doClick();
     }
 
     //Just a get method for the databaseConnection
@@ -128,10 +129,12 @@ public class GUI extends JFrame {
     }
 
     // get listener class (made it inner for simplicity sake)
-    class GetListener implements ActionListener {
+    class GetListenerMovie implements ActionListener {
         public void actionPerformed(ActionEvent aEvent) {
+            if (scrollPane != null)
+                getContentPane().remove(scrollPane);
             //Query the data in our DB
-            dbc.queryData(simpleQuery());
+            dbc.queryData(simpleQueryMovie());
             ResultSet rs = dbc.getRs();
             //Set up the tables
             mModel = new MovieTableModel(rs);
@@ -146,9 +149,19 @@ public class GUI extends JFrame {
             doLayout();
         }
 
-        public String simpleQuery() {
+        public String simpleQueryMovie() {
             return "select idfilm, Title, Release_Date, Length, imdbRating, Plot from Film";
         }
     }
+    // get listener class for actors(inner for simplicity sake)
+        public String simpleQueryActor() {
+            return "select idfilm, Title, Release_Date, Length, imdbRating, Plot from Film";
+        }
+        public String simpleQueryRole() {
+            return "select idfilm, Title, Release_Date, Length, imdbRating, Plot from Film";
+        }
+        public String simpleQueryAwards() {
+            return "select idfilm, Title, Release_Date, Length, imdbRating, Plot from Film";
+        }
 
 }
