@@ -1,11 +1,12 @@
-public abstract class Table {
-    /*
-    //The database connected through MySQL
-    static databaseConnection db;
+import javax.swing.JFrame;
 
-    //The graphical user interface, allows the display of data
-    static GUI gui;
-    */
-    //Main function to send data to the GUI
-    void main(String[] args) {}
+public class Table {
+
+    //Main function to send data to the GUI and run the db
+    public static void main(String[] args) {
+        GUI graphic = new GUI();
+
+        graphic.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        graphic.setVisible(true);
+    }
 }
