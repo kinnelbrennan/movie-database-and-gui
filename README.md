@@ -16,12 +16,11 @@ provided by the buttons.
 
 UML
 
-/Users/brennankinnel/Desktop/Screen Shot 2018-04-19 at 6.08.36 PM.png
-
+![alt text](https://ibb.co/eQ5ZXS)
 
 EER
 
-/Users/brennankinnel/Desktop/Screen Shot 2018-04-19 at 5.57.12 PM.png
+![alt text](https://ibb.co/hE4TsS)
 
 Lessons Learned:
 We ended up changing our schema a lot from the orginal design due to the fact that the front end was developed first. in the future
