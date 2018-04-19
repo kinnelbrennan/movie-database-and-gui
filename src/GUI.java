@@ -11,10 +11,10 @@ import java.sql.SQLException;
 
 public class GUI extends JFrame {
     // height in pixels
-    private static final int HEIGHT = 1800;
+    private static final int HEIGHT = 900;
 
     //width in pixels
-    private static final int WIDTH = 2880;
+    private static final int WIDTH = 1440;
 
     // gives us a cell format for the result set
     private JTable view;
@@ -25,6 +25,11 @@ public class GUI extends JFrame {
 
     // so we can scroll through the results
     private JScrollPane scrollPane;
+
+    private JTextField specifyQueryMovie = new JTextField(10);
+    private JTextField specifyQueryActor = new JTextField(10);
+    private JTextField specifyQueryRoles = new JTextField(10);
+    private JTextField specifyQueryAwards = new JTextField(10);
 
     // to enter varios types of data
     //private  JTextField titleField = new JTextField(10);
@@ -51,6 +56,10 @@ public class GUI extends JFrame {
         JButton addAwardData = new JButton("Add Award"); //add an Award
         JButton removeData = new JButton("Remove Row"); //remove a movie
 
+        String[] dropdown = {"Movies", "Actors", "Awards", "Roles"};
+
+
+
         //Setting up the window
         setTitle("Movie Database");
         setSize(WIDTH, HEIGHT);
@@ -59,9 +68,13 @@ public class GUI extends JFrame {
         JPanel bottom = new JPanel();
         bottom.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
+        bottom.add(specifyQueryMovie);
         bottom.add(queryMovies);
+        bottom.add(specifyQueryActor);
         bottom.add(queryActors);
+        bottom.add(specifyQueryRoles);
         bottom.add(queryAwards);
+        bottom.add(specifyQueryAwards);
         bottom.add(queryRoles);
 
         //Creating the panel for manipulating data
@@ -163,8 +176,9 @@ public class GUI extends JFrame {
         public void actionPerformed(ActionEvent aEvent) {
             if (scrollPane != null)
                 getContentPane().remove(scrollPane);
+            String specifyMovie = specifyQueryMovie.getText().trim();
             //Query the data in our DB
-            dbc.queryData(simpleQueryMovie());
+            dbc.queryData(simpleQueryMovie(specifyMovie));
             ResultSet rs = dbc.getRs();
             //Set up the tables
             mModel = new MovieTableModel(rs);
@@ -179,8 +193,13 @@ public class GUI extends JFrame {
             doLayout();
         }
 
-        public String simpleQueryMovie() {
-            return "select idfilm, Title, Release_Date, Length, imdbRating, Plot from Film";
+        public String simpleQueryMovie(String specifyMovie) {
+            if (specifyMovie.length() > 0) {
+                return "select Title, Release_Date, Length, imdbRating, Plot from Film where '"
+                        + specifyMovie + "'" + " = Title";
+            } else {
+                return "select Title, Release_Date, Length, imdbRating, Plot from Film";
+            }
         }
     }
     // get listener class for actors(inner for simplicity sake)
@@ -188,7 +207,8 @@ public class GUI extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (scrollPane != null)
                 getContentPane().remove(scrollPane);
-            dbc.queryData(simpleQueryActor());
+            String specifyActor = specifyQueryActor.getText().trim();
+            dbc.queryData(simpleQueryActor(specifyActor));
             ResultSet rs = dbc.getRs();
             aModel = new ActorTableModel(rs);
             view = new JTable(aModel);
@@ -200,15 +220,21 @@ public class GUI extends JFrame {
             pack();
             doLayout();
         }
-        public String simpleQueryActor() {
-            return "select idActors, Name, Birthday, Birthplace from Actors";
+        public String simpleQueryActor(String specifyActor) {
+            if (specifyActor.length() > 0) {
+                return "select Name, Birthday, Birthplace from Actors where '"
+                        + specifyActor + "'" + " = " + "Name";
+            } else {
+                return "select Name, Birthday, Birthplace from Actors";
+            }
         }
     }
     class GetListenerAwards implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (scrollPane != null)
                 getContentPane().remove(scrollPane);
-            dbc.queryData(simpleQueryAwards());
+            String specifyAward = specifyQueryAwards.getText().trim();
+            dbc.queryData(simpleQueryAwards(specifyAward));
             ResultSet rs = dbc.getRs();
             awModel = new AwardTableModel(rs);
             view = new JTable(awModel);
@@ -220,15 +246,22 @@ public class GUI extends JFrame {
             pack();
             doLayout();
         }
-        public String simpleQueryAwards() {
-            return "select idAwards, Name, Category from Awards";
+        public String simpleQueryAwards(String specifyAward) {
+
+            if(specifyAward.length() > 0) {
+                return "select Name, Category from Awards where '"
+                        + specifyAward + "'" +" = " + "Name";
+            } else {
+                return "select Name, Category from Awards";
+            }
         }
     }
     class GetListenerRoles implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (scrollPane != null)
                 getContentPane().remove(scrollPane);
-            dbc.queryData(simpleQueryRoles());
+            String specifyRole = specifyQueryRoles.getText().trim();
+            dbc.queryData(simpleQueryRoles(specifyRole));
             ResultSet rs = dbc.getRs();
             rModel = new RoleTableModel(rs);
             view = new JTable(rModel);
@@ -240,8 +273,12 @@ public class GUI extends JFrame {
             pack();
             doLayout();
         }
-        public String simpleQueryRoles() {
-            return "select idWorks_on, Role, star, idActors, idFilm from Works_on";
+        public String simpleQueryRoles(String specifyRole) {
+            if(specifyRole.length() > 0) {
+                return "CALL Cleanse_Works_on2('" + specifyRole + "'" + ")";
+            } else {
+                return "CALL Cleanse_Works_on()";
+            }
         }
     }
 

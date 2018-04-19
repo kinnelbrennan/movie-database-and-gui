@@ -24,7 +24,7 @@ public class AwardTableModel extends AbstractTableModel {
 
     //we know this from the data in our DB
     public int getColumnCount() {
-        return 3;
+        return 2;
     }
 
     public String getColumnName(int column) {
