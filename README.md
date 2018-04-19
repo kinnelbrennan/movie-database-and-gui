@@ -14,13 +14,13 @@ that will be within the "databaseConnection" class.
 All you have to do is run the main function in the Table class and you can begin to interact with the system, all functionality
 provided by the buttons.
 
-UML
+EER (see attached)
 
-![alt text](https://ibb.co/eQ5ZXS)
+![alt text](https://image.ibb.co/ntcRe7/Screen_Shot_2018_04_19_at_5_57_12_PM.png)
 
-EER
+UML (see attached)
 
-![alt text](https://ibb.co/hE4TsS)
+![alt text](https://preview.ibb.co/cq01CS/Screen_Shot_2018_04_19_at_6_08_36_PM.png)
 
 Lessons Learned:
 We ended up changing our schema a lot from the orginal design due to the fact that the front end was developed first. in the future

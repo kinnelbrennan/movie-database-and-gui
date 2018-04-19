@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a03f3ddc-62dd-4c93-a3cd-a0271211e48c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$1.class" afterPath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$2.class" afterPath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$GetListenerActor.class" afterPath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$GetListenerActor.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$GetListenerAwards.class" afterPath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$GetListenerAwards.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$GetListenerMovie.class" afterPath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$GetListenerMovie.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$GetListenerRoles.class" afterPath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI$GetListenerRoles.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI.class" afterPath="$PROJECT_DIR$/out/production/movie-database-and-gui/GUI.class" />
-      <change beforePath="$PROJECT_DIR$/src/ActorTableModel.java" afterPath="$PROJECT_DIR$/src/ActorTableModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/AwardTableModel.java" afterPath="$PROJECT_DIR$/src/AwardTableModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
-      <change beforePath="$PROJECT_DIR$/src/MovieTableModel.java" afterPath="$PROJECT_DIR$/src/MovieTableModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/RoleTableModel.java" afterPath="$PROJECT_DIR$/src/RoleTableModel.java" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
